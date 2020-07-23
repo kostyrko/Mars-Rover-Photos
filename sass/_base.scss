@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+  font-family: $font-main;
+}
+
+.container {
+  // border: 1px solid white;
+  width: 100vw;
+  max-width: 1200px;
+  height: 100%;
+  @include flex-center;
+}

@@ -1,0 +1,45 @@
+header {
+  @include flex-center;
+  height: 10vh;
+  .container{
+    background-color: $secondary-color;
+  }
+  h1 {
+    font-weight: 600;
+  }
+}
+
+.hero {
+  @include flex-center;
+  // align-items: center;
+  height: 90vh;
+  // .container {
+  //   align-items: center;
+  // }
+  .hero__container {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  .navigation {
+    color: $background-color;
+    // border: 1px solid $attention-color;
+    border-radius: $primary-radius;
+    background-color: rgba(255, 255, 255, 0.6);
+    @include flex-center;
+    flex-direction: column;
+    ul {
+      // border: 1px solid $attention-color;
+      @include flex-center;
+      flex-wrap: wrap;
+    }
+  }
+  .credits {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: small;
+    color: rgba(255, 255, 255, 0.418);
+  }
+}
