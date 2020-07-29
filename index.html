@@ -1,44 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/main.css">
-  <title>NASA-API-Challenge</title>
+  <title>Mars-Rover-Photos</title>
 </head>
+
 <body>
   <header class="header-main" id="header">
     <div class="container">
-      <h1>NASA API Challenge</h1>
+      <h1>Mars Rover Photos - NASA API</h1>
     </div>
   </header>
   <div class="hero">
     <div class="container hero__container">
       <nav class="navigation">
-        <h2>discover <span>Mars Rover Photos</span> from Curiosity mission</h2>
-        <p class="info">choose a camera</p>
+        <h2 class="navigation__title">discover <span>Mars Rover Photos</span> from <span>Curiosity mission</span></h2>
+        <p class="navigation__info">choose a camera</p>
         <ul>
-          <li class="nav-elem"><button class="btn">Front - Hazard Avoidance</button></li>
-          <li class="nav-elem"><button class="btn">Mast</button></li>
-          <li class="nav-elem"><button class="btn">Navigation</button></li>
+          <li class="nav-elem">
+            <a class="a nav-link" href="#rover-images" id="avoidance-cam">Hazard Avoidance</a>
+          </li>
+          <li class="nav-elem" id="mast-cam">
+            <a class="nav-link" href="#rover-images">Mast</a>
+          </li>
+          <li class="nav-elem" id="navigation-cam">
+            <a class="nav-link" href="#rover-images">Navigation</a>
+          </li>
         </ul>
       </nav>
       <div class="credits">credits</div>
     </div>
   </div>
-  <main>
+  <main class="d--none">
     <div class="container">
-      <div class="imagery-display">
+      <div class="imagery-display" id="rover-images">
         <ul class="photo-gallery">
-          <li class="photo"><figure>
-            <img src="" alt="">
-            <figcaption></figcaption>
-          </figure></li>
+          <!-- <li class="photo">
+            <figure>
+              <img src="http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/00100/opgs/edr/fcam/FRA_406374643EDR_F0050178FHAZ00301M_.JPG" alt="">
+              <figcaption></figcaption>
+            </figure>
+          </li> -->
+          <!-- <li class="photo"></li>
           <li class="photo"></li>
           <li class="photo"></li>
           <li class="photo"></li>
-          <li class="photo"></li>
-          <li class="photo"></li>
+          <li class="photo"></li> -->
         </ul>
         <button class="show-more">Show more</button>
       </div>
@@ -46,4 +56,5 @@
   </main>
   <script src="js/app.js"></script>
 </body>
+
 </html>
