@@ -31,19 +31,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function getPhotos (event) {
     displayMain()
     let camera
+    console.log(event.target);
     // console.log(event.target.id === "avoidance-cam")
-    if (event.target.id === "avoidance-cam") {
-      console.log('hazard-avoidance')
-      camera = 'fhaz' 
-    }
-    console.log('clicked')
-    // console.log('camera', camera);
-    fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=100&camera=${camera}&api_key=${id}`)
+    if (event.target.id === "avoidance-cam") {camera = 'fhaz'}
+    if (event.target.id === "mast-cam") {camera = 'mast'}
+    if (event.target.id === "navigation-cam") {camera = 'navcam'}
+    // console.log('camera')
+    console.log('camera:', camera);
+    // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=navcam&api_key=DEMO_KEY
+    // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=DEMO_KEY
+    fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=${camera}&api_key=${id}`)
     .then(response => response.json())
     .then(response => {
-      // console.log('here');
-      // console.log(response.photos)
-      // console.log(photoGallery);
+      console.log(response)
       console.log((response.photos).forEach(element => {
         // console.log(element.img_src)
         photoGallery.innerHTML += `<li class="photo">
