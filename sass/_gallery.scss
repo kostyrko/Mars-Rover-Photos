@@ -1,6 +1,19 @@
 main {
   min-height: 75vh;
   @include flex-center;
+  .imagery-display{
+    // border: 1px solid white;
+    .show-more {
+      margin: 20px;
+      margin-left: 50%;
+      transform: translate(-50%, -50%)
+    }
+  }
+  .loading {
+    @include flex-center;
+    border: 1px solid white;
+    margin: 20px;
+  }
   .photo-gallery {
     @include flex-center;
     // display: flex;

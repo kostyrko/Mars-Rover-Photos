@@ -5,7 +5,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const credits = document.querySelector(".credits");
   const main = document.querySelector("main");
   const photoGallery = document.querySelector(".photo-gallery");
-  // links
+  const loadingFigure = document.querySelector(".loading");
+  const showMore = document.querySelector(".show-more");
+  // links-buttons
   const avoidanceCam = document.getElementById("avoidance-cam");
   const mastCam = document.getElementById("mast-cam");
   const navigationCam = document.getElementById("navigation-cam");
@@ -28,7 +30,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=hc7h3g9MdRZoOGceRbx8rmy5OEY4h1lyBQwu7qJF
 
   function getPhotos(event) {
-    displayMain();
+    displayElement(main);
+    loadingInfo();
     let camera;
     console.log(event.target);
     // console.log(event.target.id === "avoidance-cam")
@@ -51,28 +54,36 @@ window.addEventListener("DOMContentLoaded", (event) => {
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        for (let i = 1; i <= 6; i++) {
+        loadingFigure.innerHTML = ''
+        for (let i = 0; i <= 5; i++) {
           photoGallery.innerHTML += `<li class="photo">
-        <figure>
-          <img src=${(response.photos[i]).img_src} alt="">
-          <figcaption></figcaption>
-        </figure>
-        </li>`;
-        }})
-      //     response.photos.forEach((element) => {
-      //       // console.log(element.img_src)
-      //       photoGallery.innerHTML += `<li class="photo">
-      //   <figure>
-      //     <img src=${element.img_src} alt="">
-      //     <figcaption></figcaption>
-      //   </figure>
-      // </li>`;
-      //     })
+          <figure>
+            <img src=${response.photos[i].img_src} alt="">
+            <figcaption></figcaption>
+          </figure>
+          </li>`;
+        }
+      });
+    displayElement(showMore);
+    //     response.photos.forEach((element) => {
+    //       // console.log(element.img_src)
+    //       photoGallery.innerHTML += `<li class="photo">
+    //   <figure>
+    //     <img src=${element.img_src} alt="">
+    //     <figcaption></figcaption>
+    //   </figure>
+    // </li>`;
+    //     })
   }
 
-  function displayMain() {
-    main.classList.remove("d--none");
+  function displayElement(element) {
+    element.classList.remove("d--none");
   }
 
+  function loadingInfo() {
+    loadingFigure.innerHTML += `
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      `;
+  }
   // console.log('DOM fully loaded and parsed');
 });
