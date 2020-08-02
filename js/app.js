@@ -18,6 +18,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   avoidanceCam.addEventListener("click", getPhotos);
   mastCam.addEventListener("click", getPhotos);
   navigationCam.addEventListener("click", getPhotos);
+  // show more
+  showMore.addEventListener("click", morePhotos);
 
   fetch(`https://api.nasa.gov/planetary/apod?api_key=${id}`)
     .then((response) => response.json())
@@ -28,11 +30,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
 
   // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=hc7h3g9MdRZoOGceRbx8rmy5OEY4h1lyBQwu7qJF
-
+  let camera;
   function getPhotos(event) {
     displayElement(main);
     loadingInfo();
-    let camera;
     console.log(event.target);
     // console.log(event.target.id === "avoidance-cam")
     if (event.target.id === "avoidance-cam") {
@@ -74,6 +75,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //   </figure>
     // </li>`;
     //     })
+    return camera
+  }
+
+  function morePhotos(event) {
+    console.log(camera);
   }
 
   function displayElement(element) {
