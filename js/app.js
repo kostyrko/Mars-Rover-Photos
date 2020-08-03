@@ -31,6 +31,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=hc7h3g9MdRZoOGceRbx8rmy5OEY4h1lyBQwu7qJF
   let camera;
+  let sol = 1000;
   function getPhotos(event) {
     displayElement(main);
     loadingInfo();
@@ -50,7 +51,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=navcam&api_key=DEMO_KEY
     // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=DEMO_KEY
     fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=${camera}&api_key=${id}`
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&camera=${camera}&api_key=${id}`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -65,21 +66,31 @@ window.addEventListener("DOMContentLoaded", (event) => {
           </li>`;
         }
       });
+      sol++
+    console.log('sol1', sol);
     displayElement(showMore);
-    //     response.photos.forEach((element) => {
-    //       // console.log(element.img_src)
-    //       photoGallery.innerHTML += `<li class="photo">
-    //   <figure>
-    //     <img src=${element.img_src} alt="">
-    //     <figcaption></figcaption>
-    //   </figure>
-    // </li>`;
-    //     })
-    return camera
   }
 
   function morePhotos(event) {
     console.log(camera);
+    console.log('sol',sol);
+    fetch(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&camera=${camera}&api_key=${id}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        loadingFigure.innerHTML = ''
+        for (let i = 0; i <= 5; i++) {
+          photoGallery.innerHTML += `<li class="photo">
+          <figure>
+            <img src=${response.photos[i].img_src} alt="">
+            <figcaption></figcaption>
+          </figure>
+          </li>`;
+        }
+      });
+      sol++
   }
 
   function displayElement(element) {
