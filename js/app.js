@@ -21,17 +21,37 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // show more
   showMore.addEventListener("click", morePhotos);
   
-  fetch(`https://api.nasa.gov/planetary/apod?api_key=${id}`)
-    .then((response) => response.json())
-    .then((response) => {
-      heroContainer.style.backgroundImage = `url(${response.url})`;
-      // console.log(response)
-      credits.innerText = `Astronomy Picture of the Day / Copyright: ${response.copyright} (${response.date})`;
-      backgroundLoader.classList.add("d--none");
-    });
+  // get todays date and 1 before to get an image not a video
+  // https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2020-08-03&end_date=2020-08-05
+  
+  function getBackgroundImage(params) {
+    let today = new Date()
+    let  twoDaysBefore = new Date(today)
+    twoDaysBefore.setDate(twoDaysBefore.getDate() - 2)
+    today = (today.toISOString()).slice(0,10);
+    twoDaysBefore = (twoDaysBefore.toISOString()).slice(0,10)
+    
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${id}&start_date=${twoDaysBefore}&end_date=${today}`)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response[2].media_type === 'image') {
+          imgResponse = response[2];
+        } else if (response[1].media_type === 'image') {
+          imgResponse = response[1];
+        } else {
+          imgResponse = response[0];
+        };
+        heroContainer.style.backgroundImage = `url(${imgResponse.url})`;
+        // console.log(response[1].media_type)
+        credits.innerText = `Astronomy Picture of the Day / Copyright: ${response.copyright} (${imgResponse.date})`;
+        backgroundLoader.classList.add("d--none");
+      });
+  }
+  
+  getBackgroundImage()
 
   let camera;
-  let sol = 1000;
+  let sol = 502;
   
   function getCamPhotos(event) {
     displayElement(main);
@@ -62,11 +82,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
       .then((response) => {
         console.log(response);
         loadingFigure.innerHTML = ''
+        photoGallery.innerHTML += `<li class='sol-day'>Sol: ${sol} <span>(${(response.photos).length} photos available from this day) </span> <li>`
         for (let i = 0; i <= 5; i++) {
           photoGallery.innerHTML += `<li class="photo">
           <figure>
             <img src=${response.photos[i].img_src} alt="">
-            <figcaption></figcaption>
+            <figcaption>Image id: ${response.photos[i].id}</figcaption>
           </figure>
           </li>`;
         }
