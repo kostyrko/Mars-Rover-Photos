@@ -90,14 +90,48 @@ window.addEventListener("DOMContentLoaded", (event) => {
             <figcaption>Image id: ${response.photos[i].id}</figcaption>
           </figure>
           </li>`;
+          const listImages = Array.from(document.querySelectorAll(".photo"))
+          listImages.forEach(function(elem){
+            elem.addEventListener('click', handleImageClick)
+          })
+          console.log('images',listImages);
         }
       });
       sol++
   }
 
+  // const main = document.querySelector('main')
+  function createDivNode(imageSrc) {
+    console.log('works');
+    const div = document.createElement('div')
+    div.classList.add('fullScreen')
+    const img = document.createElement('img')
+    img.setAttribute('src', imageSrc)
+    const button = document.createElement('button');
+    button.classList.add('close');
+    button.innerText = 'Close';
+    div.appendChild(img);
+    div.appendChild(button);
+    return div;
+  }
+
+  function handleFullscreenClose(event) {
+  const fullscreenDiv = document.querySelector('.fullScreen');
+  fullscreenDiv.parentElement.removeChild(fullscreenDiv);
+  }
+
+  function handleImageClick(event) {
+    const src = this.firstElementChild.firstElementChild.getAttribute('src');
+    // console.log('kliknieto', src);
+    const fullscreenDiv = createDivNode(src);
+    fullscreenDiv.querySelector('.close').addEventListener('click', handleFullscreenClose)
+    main.appendChild(fullscreenDiv);
+  }
+
+
+  // get more photos
   function morePhotos() {
-    console.log(camera);
-    console.log('sol',sol);
+
     getPhotos(camera)
   }
 
@@ -110,5 +144,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
       <i class="fa fa-spinner fa-spin fa-3x"></i>
       `;
   }
+
   // console.log('DOM fully loaded and parsed');
 });
