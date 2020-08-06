@@ -11,6 +11,12 @@ visit the site using this link: [DEMO](https://kostyrko.github.io/Mars-Rover-Pho
 
 1.2 Clear all images button
 
+1.3 Sticky menu on top
+
+1.4 Availability to choose between all photos from each day or just a representation (as it is now)
+
+1.5 Tool-tips
+
 
 ### Used resources
 
