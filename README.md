@@ -1,7 +1,11 @@
 ## Mars Rover Photos 
 <span>discover Mars Rover Photos from Curiosity mission</span>
 
-### Further features to implement:
+visit the site using this link: [DEMO](https://kostyrko.github.io/Mars-Rover-Photos)
+
+---
+
+### Working stages/future features:
 
 1.1 To the top button
 
