@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+  font-family: $font-main;
+}
+
+.container {
+  // border: 1px solid white;
+  width: 100vw;
+  max-width: 1200px;
+  height: 100%;
+  @include flex-center;
+}
+
+.d--none {
+  display: none;
+}
+
+.btn {
+  color: white;
+  padding: 10px 20px;
+  background-color: $secondary-color;
+  border-radius: $primary-radius;
+  box-shadow: rgb(77, 77, 77) 0px 1px 2px;
+  border: 2px solid $secondary-color;
+  &:hover{
+    color: white;
+    background-color: $attention-color;
+    border: 2px solid $attention-color;
+  }
+  &:focus{
+    border: 2px solid $attention-color;
+  }
+  &:active {
+    box-shadow: inset rgb(77, 77, 77) 0px 1px 2px;
+  }
+}

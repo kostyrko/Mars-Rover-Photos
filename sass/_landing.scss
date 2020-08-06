@@ -1,0 +1,84 @@
+header {
+  @include flex-center;
+  height: 5vh;
+  .container {
+    background-color: $secondary-color;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+}
+
+.hero {
+  @include flex-center;
+  height: 95vh;
+  .hero__container {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  .navigation {
+    @include flex-center;
+    flex-direction: column;
+    padding: 40px;
+    color: black;
+    border-radius: $primary-radius * 4;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 3px solid white;
+    box-shadow: rgb(126, 126, 126) 0px 5px 10px;
+    margin: 15px;
+    .navigation__title {
+      text-align: center;
+      font-weight: 300;
+      font-size: 1.25rem;
+      span {
+        font-weight: 500;
+        font-size: 1.5rem;
+      }
+    }
+    .navigation__info {
+      margin-top: 15px;
+    }
+    ul {
+      // border: 1px solid $attention-color;
+      @include flex-center;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin-top: 20px;
+      width: 100%;
+      li {
+        margin: 20px 0;
+      }
+      .nav-link {
+        text-decoration: none;
+      }
+    }
+    .background--loader {
+      margin-top: 20px;
+    }
+  }
+  .credits {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: small;
+    color: rgba(255, 255, 255, 0.418);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .hero {
+    .navigation {
+      ul {
+        flex-direction: row;
+        li {
+          margin: 20px;
+        }
+      }
+    }
+  }
+}

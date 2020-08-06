@@ -1,3 +1,12 @@
-# Mars-Rover-Photos (NASA-API)
+### Further features to implement:
 
-App using NASA APIs displaying Mars Rover Photos from Curiosity mission :rocket:
+1.1 To the top button
+
+1.2 Clear all images button
+
+
+### Used resources
+
+[APOD-API](https://github.com/nasa/apod-api)
+
+[Mars Rover Photos](https://api.nasa.gov/)
