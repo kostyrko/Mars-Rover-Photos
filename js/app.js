@@ -86,7 +86,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         for (let i = 0; i <= 5; i++) {
           photoGallery.innerHTML += `<li class="photo">
           <figure>
-            <img src=${response.photos[i].img_src} alt="">
+            <img class='image' src=${response.photos[i].img_src} alt="${response.photos[i].camera.name}-${response.photos[i].id}"/>
             <figcaption>Image id: ${response.photos[i].id}</figcaption>
           </figure>
           </li>`;
@@ -94,7 +94,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           listImages.forEach(function(elem){
             elem.addEventListener('click', handleImageClick)
           })
-          console.log('images',listImages);
+          // console.log('images',listImages);
         }
       });
       sol++
@@ -109,6 +109,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     img.setAttribute('src', imageSrc)
     const button = document.createElement('button');
     button.classList.add('close');
+    button.classList.add('btn');
     button.innerText = 'Close';
     div.appendChild(img);
     div.appendChild(button);
