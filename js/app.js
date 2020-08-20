@@ -21,8 +21,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // show more
   showMore.addEventListener("click", morePhotos);
 
-  // get todays date and 1 before to get an image not a video
-  // https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2020-08-03&end_date=2020-08-05
 
   function getBackgroundImage(params) {
     let today = new Date();
@@ -35,6 +33,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       `https://api.nasa.gov/planetary/apod?api_key=${id}&start_date=${twoDaysBefore}&end_date=${today}`
     )
       .then((response) => response.json())
+      // avoiding the video format by searching 2 days before for img
       .then((response) => {
         if (response[2].media_type === "image") {
           imgResponse = response[2];
@@ -64,13 +63,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
   getBackgroundImage()
 
   let camera;
+
+  // setting beginning date
   let sol = 502;
 
   function getCamPhotos(event) {
     displayElement(main);
-    // loadingInfo();
-    // console.log(event.target);
-    // console.log(event.target.id === "avoidance-cam")
     if (event.target.id === "avoidance-cam") {
       camera = "fhaz";
     }
@@ -80,14 +78,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (event.target.id === "navigation-cam") {
       camera = "navcam";
     }
-    console.log("camera", camera);
     getPhotos(camera);
     displayElement(showMore);
   }
 
   function getPhotos(camera) {
-    // console.log('camera',camera);
-    // loadingInfo();
     fetch(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&camera=${camera}&api_key=${id}`
     )
@@ -107,15 +102,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
           listImages.forEach(function (elem) {
             elem.addEventListener("click", handleImageClick);
           });
-          // console.log('images',listImages);
         }
       });
     sol++;
   }
 
-  // const main = document.querySelector('main')
   function createDivNode(imageSrc) {
-    console.log("works");
     const div = document.createElement("div");
     div.classList.add("fullScreen");
     const img = document.createElement("img");
@@ -127,6 +119,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     div.appendChild(img);
     div.appendChild(button);
     return div;
+    // const div = `
+    //   <div class="fullScreen">
+    //     <img src=${imageSrc}/>
+    //     <button class="close btn">Close</button>
+    //   </div>`
+    // main.innerHTML += div
   }
 
   function handleFullscreenClose(event) {
@@ -153,11 +151,4 @@ window.addEventListener("DOMContentLoaded", (event) => {
     element.classList.remove("d--none");
   }
 
-  // function loadingInfo() {
-  //   loadingFigure.innerHTML += `
-  //     <i class="fa fa-spinner fa-spin fa-3x"></i>
-  //     `;
-  // }
-
-  // console.log('DOM fully loaded and parsed');
 });
