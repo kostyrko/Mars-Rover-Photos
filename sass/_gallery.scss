@@ -111,4 +111,29 @@ main {
       border: 2px solid $secondary-color;
     }
   }
+  .to-top {
+    color: $attention-color;
+    position: absolute;
+    bottom: 35px;
+    right: 25px;
+    .fa-rocket {
+      font-size: 2.5rem;
+      rotate: -45deg;
+      text-shadow:-2px 2px rgba(255, 255, 255, 0.2)
+    }
+  }
+  .to-top:hover {
+    color: $font-color;
+    transform: translate(0%, -50%);
+    .fa-rocket {
+      text-shadow:-4px 4px rgba(255, 255, 255, 0.3)
+    }
+  }
+  .to-top:hover::after {
+    content: 'to the top';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 75px;
+  }
 }
