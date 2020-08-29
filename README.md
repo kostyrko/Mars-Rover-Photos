@@ -9,7 +9,7 @@ visit the site using this link: [DEMO](https://kostyrko.github.io/Mars-Rover-Pho
 
 1.1 Show me more from that day button
 
-1.2 To the top button
+1.2 ~~To the top button~~
 
 1.3 Clear all images button
 
