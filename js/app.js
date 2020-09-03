@@ -92,11 +92,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
         loadingFigure.innerHTML = "";
         photoGallery.innerHTML += `<li class='sol-day'>Sol: ${sol} <span>(${response.photos.length} photos available from this day) </span> <li>`;
         for (let i = 0; i <= 5; i++) {
-          photoGallery.innerHTML += `<li class="photo">
-          <figure>
-            <img class='image' src=${response.photos[i].img_src} alt="${response.photos[i].camera.name}-${response.photos[i].id}"/>
-            <figcaption>Image id: ${response.photos[i].id}</figcaption>
-          </figure>
+          photoGallery.innerHTML += `
+          <li class="photo">
+            <figure>
+              <img class='image' src=${response.photos[i].img_src} alt="${response.photos[i].camera.name}-${response.photos[i].id}"/>
+              <figcaption>Image id: ${response.photos[i].id}</figcaption>
+            </figure>
           </li>`;
           const listImages = Array.from(document.querySelectorAll(".photo"));
           listImages.forEach(function (elem) {

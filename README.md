@@ -7,15 +7,17 @@ visit the site using this link: [DEMO](https://kostyrko.github.io/Mars-Rover-Pho
 
 ### Working stages/future features:
 
-1.1 To the top button
+1.1 Show me more from that day button
 
-1.2 Clear all images button
+1.2 ~~To the top button~~
 
-1.3 Sticky menu on top
+1.3 Clear all images button
 
-1.4 Availability to choose between all photos from each day or just a representation (as it is now)
+1.4 Sticky menu on top
 
 1.5 Tool-tips
+
+1.6 Type in a specific day
 
 
 ### Used resources
@@ -23,3 +25,4 @@ visit the site using this link: [DEMO](https://kostyrko.github.io/Mars-Rover-Pho
 [APOD-API](https://github.com/nasa/apod-api)
 
 [Mars Rover Photos](https://api.nasa.gov/)
+
