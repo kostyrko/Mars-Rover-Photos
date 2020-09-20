@@ -98,7 +98,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         loadingFigure.innerHTML = "";
         photoGallery.innerHTML += `<li class='sol-day'>Sol: ${sol} <span>(${response.photos.length} photos available from this day) </span> <li>`;
         for (let i = 0; i <= 5; i++) {
@@ -118,24 +118,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
     sol++;
   }
 
+
+
   function createDivNode(imageSrc) {
     const div = document.createElement("div");
     div.classList.add("fullScreen");
-    const img = document.createElement("img");
-    img.setAttribute("src", imageSrc);
-    const button = document.createElement("button");
-    button.classList.add("close");
-    button.classList.add("btn");
-    button.innerText = "Close";
-    div.appendChild(img);
-    div.appendChild(button);
+    // console.log('imgSrc',imageSrc);
+    div.innerHTML += `<img src=${imageSrc}></img>
+    <button class="close btn">Close</button>`
     return div;
-    // const div = `
-    //   <div class="fullScreen">
-    //     <img src=${imageSrc}/>
-    //     <button class="close btn">Close</button>
-    //   </div>`
-    // main.innerHTML += div
+
   }
 
   function handleFullscreenClose(event) {
@@ -145,7 +137,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   function handleImageClick(event) {
     const src = this.firstElementChild.firstElementChild.getAttribute("src");
-    // console.log('kliknieto', src);
     const fullscreenDiv = createDivNode(src);
     fullscreenDiv
       .querySelector(".close")
