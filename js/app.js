@@ -31,8 +31,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${id}&start_date=${twoDaysBefore}&end_date=${today}`
-    )
-      .then((response) => response.json())
+      )
+      .then(response=>{
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Server error')
+        }
+      })
+      // .then((response) => response.json())
       // avoiding the video format by searching 2 days before for img
       .then((response) => {
         if (response[2].media_type === "image") {
@@ -57,6 +64,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
           backgroundLoader.classList.add("d--none")
         };
         // source: https://stackoverflow.com/questions/12354865/image-onload-event-and-browser-cache
+      })
+      .catch(err=>{
+        console.log(err);
       });
   }
 
