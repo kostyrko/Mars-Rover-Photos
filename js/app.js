@@ -96,11 +96,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
     fetch(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&camera=${camera}&api_key=${id}`
     )
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong')
+        }
+      })
       .then((response) => {
         // console.log(response);
         loadingFigure.innerHTML = "";
-        photoGallery.innerHTML += `<li class='sol-day'>Sol: ${sol} <span>(${response.photos.length} photos available from this day) </span> <li>`;
+        photoGallery.innerHTML += `<h3 class='sol-day'>Sol: ${sol} <span>(${response.photos.length} photos available from this day) </span> <h3>`;
         for (let i = 0; i <= 5; i++) {
           photoGallery.innerHTML += `
           <li class="photo">
@@ -114,7 +120,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
             elem.addEventListener("click", handleImageClick);
           });
         }
-      });
+      })
+      .catch((err)=> {
+          console.log(err);
+          windows.alert(err)
+      })
     sol++;
   }
 
