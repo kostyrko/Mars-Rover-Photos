@@ -14,6 +14,7 @@ main {
   .imagery-display{
     // border: 1px solid white;
     .show-more {
+      min-width: 200px;
       font-weight: 600;
       margin: 20px;
       margin-left: 50%;
@@ -149,6 +150,7 @@ main {
     @include flex-center;
     height: 35px;
     width: 100%;
+    align-self: flex-end;
     position: sticky;
     bottom: 0;
     background-color: rgba(240, 255, 255, 0.425);
@@ -166,5 +168,9 @@ main {
       border-radius: 5px;
       margin: 0 5px;
     }
+    .clear {
+      padding: 3px 8px;
+      font-size: 1.15rem;
+    };
   }
 }

@@ -5,21 +5,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const credits = document.querySelector(".credits");
   const main = document.querySelector("main");
   const photoGallery = document.querySelector(".photo-gallery");
+  const imagerDisplay = document.getElementById("rover-images");
+  
   const loadingFigure = document.querySelector(".loading");
   const showMore = document.querySelector(".show-more");
-  // nav-elements
-  const backgroundLoader = document.querySelector(".background--loader");
-  // links-buttons
-  const avoidanceCam = document.getElementById("avoidance-cam");
-  const mastCam = document.getElementById("mast-cam");
-  const navigationCam = document.getElementById("navigation-cam");
 
-  // FHAZ/NAVCAM/MAST
-  avoidanceCam.addEventListener("click", getCamPhotos);
-  mastCam.addEventListener("click", getCamPhotos);
-  navigationCam.addEventListener("click", getCamPhotos);
-  // show more
+  const backgroundLoader = document.querySelector(".background--loader");
+  const clearAll = document.getElementById("gallery--clear");
+
+  // FHAZ/NAVCAM/MAST - navigation
+  document.querySelectorAll('.nav-link').forEach(elem=>
+    elem.addEventListener("click", getCamPhotos)
+  )
+
+  // show more btn
   showMore.addEventListener("click", morePhotos);
+  // clear all btn
+  clearAll.addEventListener("click", clearPhotos)
 
 
   function getBackgroundImage(params) {
@@ -79,13 +81,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   function getCamPhotos(event) {
     displayElement(main);
-    if (event.target.id === "avoidance-cam") {
+    if (event.target.id === "avoidance-cam" || event.target.id === "avoidance-cam-2") {
       camera = "fhaz";
     }
-    if (event.target.id === "mast-cam") {
+    if (event.target.id === "mast-cam" || event.target.id === "mast-cam-2") {
       camera = "mast";
     }
-    if (event.target.id === "navigation-cam") {
+    if (event.target.id === "navigation-cam" || event.target.id === "navigation-cam-2") {
       camera = "navcam";
     }
     getPhotos(camera);
@@ -123,7 +125,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       })
       .catch((err)=> {
           console.log(err);
-          windows.alert(err)
+          // window.alert(err)
       })
     sol++;
   }
@@ -163,4 +165,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     element.classList.remove("d--none");
   }
 
+  function clearPhotos () {
+    photoGallery.innerHTML = ''
+  }
 });

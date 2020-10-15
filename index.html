@@ -24,13 +24,13 @@
         <p class="navigation__info">choose a camera</p>
         <ul>
           <li class="nav-elem">
-            <a class="nav-link btn" href="#btn-show-more" id="avoidance-cam">Hazard Avoidance</a>
+            <a class="nav-link btn avoidance-cam" href="#btn-show-more" id="avoidance-cam">Hazard Avoidance</a>
           </li>
           <li class="nav-elem" >
-            <a class="nav-link btn" id="mast-cam" href="#btn-show-more">Mast</a>
+            <a class="nav-link btn mast-cam" id="mast-cam" href="#btn-show-more">Mast</a>
           </li>
           <li class="nav-elem" >
-            <a class="nav-link btn" id="navigation-cam" href="#btn-show-more">Navigation</a>
+            <a class="nav-link btn navigation-cam" id="navigation-cam" href="#btn-show-more">Navigation</a>
           </li>
         </ul>
         <!-- Loading spinner -->
@@ -47,13 +47,7 @@
         <figure class='loading'></figure>
         <ul class="photo-gallery">
         </ul>
-        <!-- <div class="photo-gallery">
-            <h3 data-sol="${sol-day}" data-photos="{6+6}">Sol day</h3>
-            ul
-              li
-            <button>More from this day</button>
-        </div> -->
-        <button id='btn-show-more' class="btn show-more">Show more</button>
+        <button id='btn-show-more' class="btn show-more">More from last cam</button>
       </div>
       <div class='to-top__container'>
         <a href="#header" class='to-top'>
@@ -64,13 +58,17 @@
         <nav class="navigation">
           <ul>
             <li class="nav-elem">
-              <a class="nav-link btn" href="#btn-show-more" id="avoidance-cam">H. Avoidance</a>
+              <a class="nav-link btn avoidance-cam" href="#btn-show-more" id="avoidance-cam-2">Avoidance</a>
             </li>
             <li class="nav-elem" >
-              <a class="nav-link btn" id="mast-cam" href="#btn-show-more">Mast</a>
+              <a class="nav-link btn mast-cam" id="mast-cam-2" href="#btn-show-more">Mast</a>
             </li>
             <li class="nav-elem" >
-              <a class="nav-link btn" id="navigation-cam" href="#btn-show-more">Nav</a>
+              <a class="nav-link btn navigation-cam" id="navigation-cam-2" href="#btn-show-more">Nav</a>
+            </li>
+            <li class="nav-elem" >
+              <button class="close clear btn" id="gallery--clear" href="#btn-show-more"><i class="fa fa-times-circle-o" aria-hidden="true"></i>
+              </button>
             </li>
           </ul>
       </div>
