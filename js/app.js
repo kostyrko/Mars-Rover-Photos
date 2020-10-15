@@ -6,7 +6,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const main = document.querySelector("main");
   const photoGallery = document.querySelector(".photo-gallery");
   const imagerDisplay = document.getElementById("rover-images");
-  
   const loadingFigure = document.querySelector(".loading");
   const showMore = document.querySelector(".show-more");
 
@@ -14,15 +13,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const clearAll = document.getElementById("gallery--clear");
 
   // FHAZ/NAVCAM/MAST - navigation
-  document.querySelectorAll('.nav-link').forEach(elem=>
-    elem.addEventListener("click", getCamPhotos)
-  )
+  document
+    .querySelectorAll(".nav-link")
+    .forEach((elem) => elem.addEventListener("click", getCamPhotos));
 
   // show more btn
   showMore.addEventListener("click", morePhotos);
   // clear all btn
-  clearAll.addEventListener("click", clearPhotos)
-
+  clearAll.addEventListener("click", clearPhotos);
 
   function getBackgroundImage(params) {
     let today = new Date();
@@ -33,12 +31,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${id}&start_date=${twoDaysBefore}&end_date=${today}`
-      )
-      .then(response=>{
+    )
+      .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error('Server error')
+          throw new Error("Server error");
         }
       })
       // .then((response) => response.json())
@@ -52,27 +50,26 @@ window.addEventListener("DOMContentLoaded", (event) => {
           imgResponse = response[0];
         }
         heroContainer.style.backgroundImage = `url(${imgResponse.url})`;
-        
-        credits.innerText = `Astronomy Picture of the Day / Copyright: ${response.copyright} (${imgResponse.date})`
+        credits.innerText = `Astronomy Picture of the Day / Copyright: ${response.copyright} (${imgResponse.date})`;
       })
-      .then(()=>{
+      .then(() => {
         // create new Image element
         const image = new Image();
         // add link
-        image.src = imgResponse.url
+        image.src = imgResponse.url;
         // check if loaded
         image.onload = function () {
           // alert('Loaded!');
-          backgroundLoader.classList.add("d--none")
+          backgroundLoader.classList.add("d--none");
         };
         // source: https://stackoverflow.com/questions/12354865/image-onload-event-and-browser-cache
       })
-      .catch(err=>{
+      .catch((err) => {
         console.log(err);
       });
   }
 
-  getBackgroundImage()
+  getBackgroundImage();
 
   let camera;
 
@@ -81,13 +78,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   function getCamPhotos(event) {
     displayElement(main);
-    if (event.target.id === "avoidance-cam" || event.target.id === "avoidance-cam-2") {
+    if (
+      event.target.id === "avoidance-cam" ||
+      event.target.id === "avoidance-cam-2"
+    ) {
       camera = "fhaz";
     }
     if (event.target.id === "mast-cam" || event.target.id === "mast-cam-2") {
       camera = "mast";
     }
-    if (event.target.id === "navigation-cam" || event.target.id === "navigation-cam-2") {
+    if (
+      event.target.id === "navigation-cam" ||
+      event.target.id === "navigation-cam-2"
+    ) {
       camera = "navcam";
     }
     getPhotos(camera);
@@ -102,7 +105,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error('Something went wrong')
+          throw new Error("Something went wrong");
         }
       })
       .then((response) => {
@@ -123,23 +126,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
           });
         }
       })
-      .catch((err)=> {
-          console.log(err);
-          // window.alert(err)
-      })
+      .catch((err) => {
+        console.log(err);
+        // window.alert(err)
+      });
     sol++;
   }
-
-
 
   function createDivNode(imageSrc) {
     const div = document.createElement("div");
     div.classList.add("fullScreen");
     // console.log('imgSrc',imageSrc);
     div.innerHTML += `<img src=${imageSrc}></img>
-    <button class="close btn">Close</button>`
+    <button class="close btn">Close</button>`;
     return div;
-
   }
 
   function handleFullscreenClose(event) {
@@ -165,7 +165,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     element.classList.remove("d--none");
   }
 
-  function clearPhotos () {
-    photoGallery.innerHTML = ''
+  function clearPhotos() {
+    photoGallery.innerHTML = "";
   }
 });
